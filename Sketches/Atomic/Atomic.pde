@@ -5,8 +5,8 @@
 // Don't use rotate()
 // Use vectors and trigonometry
 
-float angle = atan2(0,150);
-float mag = sqrt(150*150 + 0);
+float angle = 0;
+//float mag = sqrt(150*150 + 0);
 
 void setup(){
   size(400, 400);
@@ -20,7 +20,7 @@ void draw(){
   ///////////////// START YOUR CODE HERE:
   noStroke();
   
-  
+  /*
   //(x,y) coordinate of a typical ellipse
   float redX = mag * cos(angle);
   float redY = mag * sin(angle);
@@ -32,15 +32,25 @@ void draw(){
   //(x,y) coordinates of ellipse rotated at an angle of 4PI/3
   float blueX = 150 * cos(angle) * cos(4*PI/3) - 50 * sin(angle) * sin(4*PI/3);
   float blueY = 150 * cos(angle) * sin(4*PI/3) + 50 * sin(angle) * cos(4*PI/3);
+  */
   
   pushMatrix();
   translate(200,200);
   fill(255,100,100);
-  ellipse(redX,redY/3,20,20);
+  ellipse(findX(angle, 0),findY(angle, 0),20,20);
+  ellipse(findX(angle+PI/2, 0),findY(angle+PI/2, 0),20,20);
+  ellipse(findX(angle+PI, 0),findY(angle+PI, 0),20,20);
+  ellipse(findX(angle+PI*3/2, 0),findY(angle+PI*3/2, 0),20,20);
   fill(100,255,100);
-  ellipse(greenX,greenY,20,20);
+  ellipse(findX(angle, (2*PI)/3),findY(angle, (2*PI)/3),20,20);
+  ellipse(findX(angle+PI/2, (2*PI)/3),findY(angle+PI/2,(2*PI)/3),20,20);
+  ellipse(findX(angle+PI, (2*PI)/3),findY(angle+PI,(2*PI)/3),20,20);
+  ellipse(findX(angle+PI*3/2, (2*PI)/3),findY(angle+PI*3/2, (2*PI)/3),20,20);
   fill(100,100,255);
-  ellipse(blueX,blueY,20,20);
+  ellipse(findX(angle, (4*PI)/3),findY(angle, (4*PI)/3),20,20);
+  ellipse(findX(angle+PI/2, (4*PI)/3),findY(angle+PI/2,(4*PI)/3),20,20);
+  ellipse(findX(angle+PI, (4*PI)/3),findY(angle+PI,(4*PI)/3),20,20);
+  ellipse(findX(angle+PI*3/2, (4*PI)/3),findY(angle+PI*3/2, (4*PI)/3),20,20);
   
   angle+=.01;
   
@@ -50,6 +60,23 @@ void draw(){
 
   
   ///////////////// END YOUR CODE HERE
+  
+}
+
+float findX(float primeAngle, float secAngle){
+  
+  float X = 150*cos(primeAngle)*cos(secAngle) - 50*sin(primeAngle)*sin(secAngle);
+  
+  return X;
+  
+  
+}
+
+float findY(float primeAngle, float secAngle){
+  
+  float Y = 150*cos(primeAngle)*sin(secAngle) + 50*sin(primeAngle)*cos(secAngle);
+  
+  return Y;
   
 }
 void drawBackground(){
