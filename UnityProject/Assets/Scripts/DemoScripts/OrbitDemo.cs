@@ -8,7 +8,8 @@ public class OrbitDemo : MonoBehaviour
     public Transform orbitCenter;
 
     private LineRenderer path;
-    public float speed = 1;
+    public float timeMultiplier = 1;
+    public float timeOffset = 0;
     public int res = 32;
 
     public float radius = 10;
@@ -23,8 +24,8 @@ public class OrbitDemo : MonoBehaviour
     void Update()
     {
         if (!orbitCenter) return;
-        float x = radius * Mathf.Cos(Time.time * speed);
-        float z = radius * Mathf.Sin(Time.time * speed);
+        float x = radius * Mathf.Cos(Time.time * timeMultiplier + timeOffset);
+        float z = radius * Mathf.Sin(Time.time * timeMultiplier + timeOffset);
 
         transform.position = new Vector3(x, 0, z) + orbitCenter.position;
 
