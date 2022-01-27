@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class animMath 
+public static class animMath
 {
 
-    public static float Map(float v, float mina, float maxa, float minb, float maxb){
-        float p = (v-mina)/(maxa-mina);
+    public static float Map(float v, float mina, float maxa, float minb, float maxb)
+    {
+        float p = (v - mina) / (maxa - mina);
         return Lerp(minb, maxb, p);
     }
     public static float Lerp(float a, float b, float p)
     {
 
-        return (b-a)*p+a;
+        return (b - a) * p + a;
     }
 
     public static Vector3 Lerp(Vector3 a, Vector3 b, float p)
@@ -26,7 +27,8 @@ public static class animMath
         return result;
     }
 
-    public static Quaternion Lerp(Quaternion a, Quaternion b, float p){
+    public static Quaternion Lerp(Quaternion a, Quaternion b, float p)
+    {
 
         Quaternion rot = Quaternion.identity;
 
@@ -38,14 +40,16 @@ public static class animMath
         return rot;
     }
 
-    public static float Ease(float current, float target, float percentLeftAfter1Second, float dt) {
-    float p = 1 - Mathf.Pow(percentLeftAfter1Second, dt);
-    return Lerp(current, target, p);
-}
+    public static float Ease(float current, float target, float percentLeftAfter1Second, float dt)
+    {
+        float p = 1 - Mathf.Pow(percentLeftAfter1Second, dt);
+        return Lerp(current, target, p);
+    }
 
-public static Vector3 Ease(Vector3 current, Vector3 target, float percentLeftAfter1Second, float dt = -1){
-    if(dt<0) dt = Time.deltaTime;
-    float p = 1 - Mathf.Pow(percentLeftAfter1Second, dt);
-    return new Vector3(current.x, target.x, p);
-}
+    public static Vector3 Ease(Vector3 current, Vector3 target, float percentLeftAfter1Second, float dt = -1)
+    {
+        if (dt < 0) dt = Time.deltaTime;
+        float p = 1 - Mathf.Pow(percentLeftAfter1Second, dt);
+        return Lerp(current, target, p);
+    }
 }
