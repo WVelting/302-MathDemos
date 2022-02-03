@@ -36,6 +36,14 @@ public class CubicCurveDemo : MonoBehaviour
         transform.position = pos;
         if(TweenCurrent >= TweenLength) isPlaying = false;
 
+        Vector3 pos2 = FindPointOnCurve(p + .05f);
+
+
+        Vector3 curveF = (pos2 - pos).normalized;
+
+        Quaternion rot = Quaternion.LookRotation(curveF);
+        transform.rotation = rot;
+
         
     }
     public void PlayTween(bool fromBeginning = false){
